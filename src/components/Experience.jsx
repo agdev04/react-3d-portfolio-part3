@@ -52,12 +52,12 @@ export const Experience = (props) => {
           : "Standing"
       );
     }, 600);
+
+    // onSectionChange(section);
   }, [section]);
 
   useFrame((state) => {
     let curSection = Math.floor(data.scroll.current * data.pages);
-
-    console.log("curSection: ", curSection);
 
     if (curSection > 3) {
       curSection = 3;

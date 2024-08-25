@@ -7,46 +7,67 @@ import { useEffect, useRef } from "react";
 
 export const projects = [
   {
-    title: "Whatkey",
-    url: "https://whatkey.io",
-    image: "/projects/whatkey.png",
+    title: "Digos Website",
+    url: "https://www.digoscity.gov.ph/",
+    image: "/projects/digos.png",
+    description: "The Local Government Website of Digos City",
+    company: "ICT Office",
+  },
+  {
+    title: "GPA Rebates",
+    url: "https://gparebates.com",
+    image: "/projects/gpa.png",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, tempore.",
+      "GPA Rebates is a comprehensive online platform designed to connect consumers with exciting rebate offers in Guam. By providing a centralized hub for all things rebates, gparebates aims to help residents and visitors save money on their purchases while supporting local businesses.",
+    company: "XTendly",
+  },
+  {
+    title: "Xffiliate",
+    url: "https://www.xffiliate.com",
+    image: "/projects/xffiliate.png",
+    description:
+      "Xffiliate is a web-based application designed to streamline the affiliate marketing process for both affiliates and merchants. It provides a centralized platform for managing affiliate programs, tracking performance, and facilitating payments.",
+    company: "XTendly",
+  },
+  {
+    title: "Hybrid AG",
+    url: "https://www.hybridag.com.au",
+    image: "/projects/hybrid.png",
+    description:
+      "HybridAg is a web application designed to assist farmers in improving soil health and crop yields through accurate soil testing. By providing farmers with real-time data and personalized recommendations, HybridAg aims to revolutionize agricultural practices and promote sustainable farming.",
+    company: "Castle Digital",
+  },
+  {
+    title: "Sargood",
+    url: "https://bookings.sargoodoncollaroy.com/",
+    image: "/projects/sargood.png",
+    description:
+      "Sargood Collaroy Booking System is a web-based application designed to streamline the booking process for guests at Sargood Collaroy. By providing a user-friendly interface and efficient booking management tools, the system aims to enhance the overall guest experience and improve operational efficiency for the hotel.",
+    company: "Castle Digital",
   },
   {
     title: "Whatkey",
     url: "https://whatkey.io",
     image: "/projects/whatkey.png",
     description:
-      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati facilis iste eius eligendi, omnis perferendis placeat quae laborum vero quaerat.",
+      "WhatKey is a specialized image recognition AI application designed to accurately identify and classify keys based on their unique features. By leveraging advanced machine learning algorithms, WhatKey can provide a reliable and efficient solution for key management, security, and access control.",
+    company: "Castle Digital",
   },
   {
-    title: "Whatkey",
-    url: "https://whatkey.io",
-    image: "/projects/whatkey.png",
+    title: "Olympus Insights",
+    url: "https://olympusinsights.io/",
+    image: "/projects/lms.png",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, tempore.",
+      "Oli is a decentralized learning management system (LMS) built on the Olympusinsights blockchain platform. It aims to revolutionize online education by leveraging the power of cryptocurrency and blockchain technology to create a secure, transparent, and equitable learning environment.",
+    company: "Castle Digital",
   },
   {
-    title: "Whatkey",
-    url: "https://whatkey.io",
-    image: "/projects/whatkey.png",
+    title: "Keen2work",
+    url: "https://www.k2w.com.au/",
+    image: "/projects/keen2work.png",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, tempore.",
-  },
-  {
-    title: "Whatkey",
-    url: "https://whatkey.io",
-    image: "/projects/whatkey.png",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, tempore.",
-  },
-  {
-    title: "Whatkey",
-    url: "https://whatkey.io",
-    image: "/projects/whatkey.png",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, tempore.",
+      "Keen2Work is a cross-based platform designed to connect job seekers with potential employers in a streamlined and efficient manner. By providing a user-friendly interface and advanced search features, Keen2Work aims to help individuals find fulfilling career opportunities and businesses recruit top talent.",
+    company: "Castle Digital",
   },
 ];
 
@@ -57,7 +78,7 @@ const Project = (props) => {
   const bgOpacity = useMotionValue(0.4);
 
   useEffect(() => {
-    animate(bgOpacity, highlighted ? 0.7 : 0.4);
+    animate(bgOpacity, highlighted ? 0.2 : 0.09);
   }, [highlighted]);
 
   useFrame(() => {
@@ -72,7 +93,7 @@ const Project = (props) => {
         ref={background}
       >
         <planeGeometry args={[10.5, 8.5]} />
-        <meshBasicMaterial color={"#000"} transparent opacity={0.1} />
+        <meshBasicMaterial color={"#000"} transparent opacity={0.8} />
       </mesh>
       <Image
         scale={[7, 4.3, 1]}
@@ -81,7 +102,7 @@ const Project = (props) => {
         position-y={2}
       />
       <Text
-        maxWidth={2}
+        maxWidth={8}
         anchorX={"left"}
         anchorY={"top"}
         fontSize={0.6}
@@ -91,9 +112,18 @@ const Project = (props) => {
       </Text>
       <Text
         maxWidth={8}
+        anchorX={"right"}
+        anchorY={"top"}
+        fontSize={0.3}
+        position={[4, -0.7, 0]}
+      >
+        {project.company.toUpperCase()}
+      </Text>
+      <Text
+        maxWidth={8}
         anchorX={"left"}
         anchorY={"top"}
-        fontSize={0.2}
+        fontSize={0.3}
         position={[-4, -1.4, 0]}
       >
         {project.description}

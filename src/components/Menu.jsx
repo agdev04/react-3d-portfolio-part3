@@ -48,10 +48,13 @@ export const Menu = (props) => {
         }`}
       >
         <div className="flex flex-col items-start justify-center flex-1 gap-6 p-8">
-          {menuItems.map((item) => (
+          {menuItems.map((item, index) => (
             <MenuButton
+              key={index}
               label={item.label}
-              onClick={() => onSectionChange(item.id)}
+              onClick={() => {
+                onSectionChange(item.id);
+              }}
               section={section}
               id={item.id}
             />
@@ -68,9 +71,7 @@ const MenuButton = (props) => {
   return (
     <button
       onClick={onClick}
-      className={`text-2xl font-bold cursor-pointer ${
-        id === section ? "text-[#5356FF]" : ""
-      } hover:text-[#5356FF] transition-colors`}
+      className={`text-2xl font-bold cursor-pointer  hover:text-[#5356FF] transition-colors`}
     >
       {label}
     </button>

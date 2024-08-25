@@ -2,6 +2,47 @@ import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import { currentProjectAtom, projects } from "./Projects";
+import { useForm, ValidationError } from "@formspree/react";
+import { useScroll } from "@react-three/drei";
+
+const links = [
+  {
+    icon: "/icons/facebook.png",
+    url: "https://www.facebook.com/agabriel.nieve",
+    onClick: () =>
+      window.open("https://www.facebook.com/agabriel.nieve", "_blank"),
+  },
+  {
+    icon: "/icons/gmail.png",
+    url: "",
+    onClick: () => openGmail(),
+  },
+  {
+    icon: "/icons/cv.png",
+    url: "",
+    onClick: () =>
+      window.open(
+        "https://drive.google.com/file/d/186Cmm38MiFnt77JoBBQisid9zJ4n2Rm6/view?usp=sharing",
+        "_blank"
+      ),
+  },
+  {
+    icon: "/icons/telephone.png",
+    url: "",
+    onClick: () => window.open("tel:+639568138851", "_blank"),
+  },
+];
+
+const openGmail = () => {
+  const subject = encodeURIComponent("Contact AG Nieve");
+
+  const sender = encodeURIComponent("sender@yourdomain.com");
+  const body = encodeURIComponent("E-mail body");
+
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&su=${subject}&to=${sender}&body=${body}`;
+
+  window.open(url, "_blank");
+};
 
 const Section = ({ children }) => {
   return (
@@ -41,19 +82,42 @@ const AboutSection = (props) => {
           Hi, I'm <span className="font-bold">AG Nieve</span>
         </h1>
         <motion.p
-          className="w-[40%] text-lg text-gray-100 mt-5"
+          className="w-[38%] text-lg text-gray-100 mt-5"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
           Iam an experienced Full Stack Developer with six years of expertise in
           software development,focusing on both web and mobile applications. My
-          passion lies in creating robust,scalable,and user-centric solutions
+          passion lies in creating robust, scalable, and user-centric solutions
           that drive business growth and enhance user experiences.
         </motion.p>
-        <div>
+        <motion.div
+          whileInView={"visible2"}
+          className="mb-3 flex justify-start gap-x-5 items-center mt-5"
+        >
+          {links.map((link, index) => {
+            return (
+              <motion.button
+                initial={{ opacity: 0 }}
+                variants={{
+                  visible2: {
+                    opacity: 1,
+                  },
+                }}
+                transition={{ duration: 1.5, delay: 2.5 + index * 0.5 }}
+                key={index}
+                onClick={link.onClick}
+                className="p-2 rounded-xl bg-white"
+              >
+                <img src={link.icon} alt="icon" className="w-8 h-8" />
+              </motion.button>
+            );
+          })}
+        </motion.div>
+        {/* <div>
           <motion.button
-            onClick={() => setSection(3)}
+            onClick={() => setSection(5)}
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2 }}
@@ -61,13 +125,21 @@ const AboutSection = (props) => {
           >
             Contact Me
           </motion.button>
-        </div>
+        </div> */}
       </div>
     </Section>
   );
 };
 
 const skills = [
+  {
+    title: "HTML",
+    level: 98,
+  },
+  {
+    title: "CSS",
+    level: 92,
+  },
   {
     title: "React",
     level: 90,
@@ -77,16 +149,32 @@ const skills = [
     level: 80,
   },
   {
-    title: "Three.js",
-    level: 70,
-  },
-  {
     title: "Node.js",
-    level: 60,
+    level: 85,
   },
   {
     title: "MongoDB",
-    level: 50,
+    level: 84,
+  },
+  {
+    title: "Rust",
+    level: 78,
+  },
+  {
+    title: "PHP",
+    level: 93,
+  },
+  {
+    title: "CodeIgniter",
+    level: 82,
+  },
+  {
+    title: "Laravel",
+    level: 84,
+  },
+  {
+    title: "Linux Administration",
+    level: 80,
   },
 ];
 
@@ -143,7 +231,6 @@ const SkillSection = () => {
 
 const ProjectSection = () => {
   const [currentProject, setCurrentProject] = useAtom(currentProjectAtom);
-
   console.log("currentProject", currentProject);
 
   const nextProject = () => {
@@ -181,18 +268,31 @@ const ProjectSection = () => {
 
 const ContactSection = (props) => {
   const { section, menuOpened } = props;
+  const [state, handleSubmit] = useForm("mnnalkpw");
+  const data = useScroll();
+
+  let curSection = Math.floor(data.scroll.current * data.pages);
+  console.log("curSection interface: ", curSection);
 
   return (
     <Section>
       <div
         className={`flex ${
-          section >= 3 && menuOpened ? "justify-start" : "justify-end"
+          curSection >= 3 && menuOpened ? "justify-start" : "justify-end"
         }`}
       >
         <div className="p-5 rounded-xl bg-white w-[40%]">
-          <form className="flex flex-col gap-y-3">
-            <h1 className="text-2xl text-center text-[#5356FF]">Contact</h1>
-
+          <form className="flex flex-col gap-y-3" onSubmit={handleSubmit}>
+            <h1 className="text-2xl text-center text-[#5356FF]">
+              Contact {section}
+            </h1>
+            {state.succeeded && (
+              <div className="bg-white p-3 rounded-xl">
+                <h1 className="text-2xl text-center text-[#5356FF]">
+                  Thank you for contacting me!
+                </h1>
+              </div>
+            )}
             <div className="flex flex-col w-full">
               <label htmlFor="name">Name</label>
               <input
@@ -200,13 +300,26 @@ const ContactSection = (props) => {
                 id="name"
                 className="p-3 border border-indigo-500 rounded-xl"
               />
+              <ValidationError
+                className="text-red-500"
+                prefix="Name"
+                field="name"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col w-full">
               <label htmlFor="email">Email</label>
               <input
                 name="email"
                 id="email"
+                type="email"
                 className="p-3 border border-indigo-500 rounded-xl"
+              />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="text-red-500"
               />
             </div>
             <div className="flex flex-col w-full">
@@ -214,9 +327,21 @@ const ContactSection = (props) => {
               <textarea
                 className="p-3 border border-indigo-500 rounded-xl"
                 rows={3}
+                id="message"
+                name="message"
+              />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="text-red-500"
               />
             </div>
-            <button className="px-8 py-3 text-white bg-indigo-500 rounded-xl">
+            <button
+              disabled={state.submitting}
+              type="submit"
+              className="px-8 py-3 text-white bg-indigo-500 rounded-xl"
+            >
               Send
             </button>
           </form>
