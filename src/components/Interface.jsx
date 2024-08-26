@@ -94,7 +94,7 @@ const AboutSection = (props) => {
         </motion.p>
         <motion.div
           whileInView={"visible2"}
-          className="mb-3 flex justify-start gap-x-5 items-center mt-5"
+          className="flex items-center justify-start mt-5 mb-3 gap-x-5"
         >
           {links.map((link, index) => {
             return (
@@ -108,7 +108,7 @@ const AboutSection = (props) => {
                 transition={{ duration: 1.5, delay: 2.5 + index * 0.5 }}
                 key={index}
                 onClick={link.onClick}
-                className="p-2 rounded-xl bg-white"
+                className="p-2 bg-white rounded-xl"
               >
                 <img src={link.icon} alt="icon" className="w-8 h-8" />
               </motion.button>
@@ -283,11 +283,9 @@ const ContactSection = (props) => {
       >
         <div className="p-5 rounded-xl bg-white w-[40%]">
           <form className="flex flex-col gap-y-3" onSubmit={handleSubmit}>
-            <h1 className="text-2xl text-center text-[#5356FF]">
-              Contact {section}
-            </h1>
+            <h1 className="text-2xl text-center text-[#5356FF]">Contact</h1>
             {state.succeeded && (
-              <div className="bg-white p-3 rounded-xl">
+              <div className="p-3 bg-white rounded-xl">
                 <h1 className="text-2xl text-center text-[#5356FF]">
                   Thank you for contacting me!
                 </h1>
