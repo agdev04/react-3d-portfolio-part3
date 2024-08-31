@@ -4,9 +4,10 @@ Command: npx gltfjsx@6.5.0 public/models/me.glb
 */
 import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
+import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 
 export function Avatar(props) {
   const { animation } = props;
@@ -18,7 +19,21 @@ export function Avatar(props) {
   });
   const group = useRef();
 
-  const { nodes, materials } = useGLTF("models/me.glb");
+  // const { nodes, materials } = useGLTF("models/me.glb");
+  const gl = useThree((state) => state.gl);
+  const { nodes, materials } = useGLTF(
+    "models/me_ktx2.glb",
+    undefined,
+    undefined,
+    (loader) => {
+      const ktx2loader = new KTX2Loader();
+      ktx2loader.setTranscoderPath(
+        "https://cdn.jsdelivr.net/gh/pmndrs/drei-assets/basis/"
+      );
+      ktx2loader.detectSupport(gl);
+      loader.setKTX2Loader(ktx2loader);
+    }
+  );
 
   const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
   const { animations: standingAnimation } = useFBX("animations/Standing.fbx");

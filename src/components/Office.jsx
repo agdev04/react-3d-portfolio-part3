@@ -8,11 +8,27 @@ import { useGLTF, useTexture, useVideoTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { motion } from "framer-motion-3d";
 import { animate, useMotionValue } from "framer-motion";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
+import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 
 export function Office(props) {
   const { section } = props;
-  const { nodes, materials } = useGLTF("/models/scene.glb");
+
+  // const { nodes, materials } = useGLTF("/models/scene.glb");
+  const gl = useThree((state) => state.gl);
+  const { nodes } = useGLTF(
+    "/models/scene_ktx2.glb",
+    undefined,
+    undefined,
+    (loader) => {
+      const ktx2loader = new KTX2Loader();
+      ktx2loader.setTranscoderPath(
+        "https://cdn.jsdelivr.net/gh/pmndrs/drei-assets/basis/"
+      );
+      ktx2loader.detectSupport(gl);
+      loader.setKTX2Loader(ktx2loader);
+    }
+  );
 
   const texture = useTexture("/textures/baked.jpg");
   const textureVSCode = useVideoTexture("/textures/video.mov");
