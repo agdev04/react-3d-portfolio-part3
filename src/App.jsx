@@ -10,7 +10,7 @@ import { MotionConfig } from "framer-motion";
 import { Leva } from "leva";
 import { framerMotionConfig } from "./config";
 import { Cursor } from "./components/Cursor";
-import Interface from "./components/interface";
+import Interface from "./components/Interface";
 
 function App() {
   const [section, setSection] = useState(0);
