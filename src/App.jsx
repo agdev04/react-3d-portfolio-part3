@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "./components/Experience";
 import { Scroll, ScrollControls } from "@react-three/drei";
-import { Interface } from "./components/Interface";
 import { useEffect, useState } from "react";
 import { ScrollManager } from "./components/ScrollManager";
 import { Menu } from "./components/Menu";
@@ -9,6 +8,7 @@ import { MotionConfig } from "framer-motion";
 import { Leva } from "leva";
 import { framerMotionConfig } from "./config";
 import { Cursor } from "./components/Cursor";
+import Interface from "./components/interface";
 
 function App() {
   const [section, setSection] = useState(0);
