@@ -1,3 +1,5 @@
+"use client";
+
 const menuItems = [
   {
     id: 0,

@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm, ValidationError } from "@formspree/react";
 import { useScroll } from "@react-three/drei";
 import Section from "./Section";

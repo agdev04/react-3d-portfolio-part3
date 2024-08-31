@@ -1,3 +1,5 @@
+"use client";
+
 import AboutSection from "./sections/AboutSection";
 import SkillSection from "./sections/SkillSection";
 import ProjectSection from "./sections/ProjectSection";

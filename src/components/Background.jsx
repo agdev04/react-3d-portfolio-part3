@@ -1,3 +1,5 @@
+"use client";
+
 import { Sphere, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { gsap } from "gsap";

@@ -1,3 +1,4 @@
+"use client";
 // import { OrbitControls } from "@react-three/drei";
 import {
   Float,
