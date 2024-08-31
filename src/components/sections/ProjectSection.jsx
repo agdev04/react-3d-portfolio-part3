@@ -3,7 +3,7 @@
 import { useAtom } from "jotai";
 import Section from "./Section";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
-import { currentProjectAtom } from "../Projects";
+import { currentProjectAtom, projects } from "../Projects";
 
 export default function ProjectSection() {
   const [currentProject, setCurrentProject] = useAtom(currentProjectAtom);
