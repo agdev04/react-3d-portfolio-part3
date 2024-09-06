@@ -55,10 +55,10 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
-          Iam an experienced Full Stack Developer with six years of expertise in
-          software development,focusing on both web and mobile applications. My
-          passion lies in creating robust, scalable, and user-centric solutions
-          that drive business growth and enhance user experiences.
+          I am an experienced Full Stack Developer with six years of expertise
+          in software development,focusing on both web and mobile applications.
+          My passion lies in creating robust, scalable, and user-centric
+          solutions that drive business growth and enhance user experiences.
         </motion.p>
         <motion.div
           whileInView={"visible2"}

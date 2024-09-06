@@ -60,7 +60,7 @@ export const projects = [
     url: "https://olympusinsights.io/",
     image: "/projects/lms.png",
     description:
-      "Oli is a decentralized learning management system (LMS) built on the Olympusinsights blockchain platform. It aims to revolutionize online education by leveraging the power of cryptocurrency and blockchain technology to create a secure, transparent, and equitable learning environment.",
+      "Oli is a decentralized learning management system (LMS) built on the Olympus insights blockchain platform. It aims to revolutionize online education by leveraging the power of cryptocurrency and blockchain technology to create a secure, transparent, and equitable learning environment.",
     company: "Castle Digital",
   },
   {
@@ -70,6 +70,14 @@ export const projects = [
     description:
       "Keen2Work is a cross-based platform designed to connect job seekers with potential employers in a streamlined and efficient manner. By providing a user-friendly interface and advanced search features, Keen2Work aims to help individuals find fulfilling career opportunities and businesses recruit top talent.",
     company: "Castle Digital",
+  },
+  {
+    title: "Rocket Framework",
+    url: "https://documenter.getpostman.com/view/38163417/2sAXjQ3Az4",
+    image: "/projects/rocket.png",
+    description:
+      "I created a simple REST Api application using Rocket a Rust backend framework. I've also used Diesel for Database ORM, and Postgres and Redis as the main database for this application.",
+    company: "Personal",
   },
 ];
 
